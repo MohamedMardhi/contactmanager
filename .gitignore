@@ -41,9 +41,7 @@ build/Release
 front/node_modules/
 node_modules/
 jspm_packages/
-
-# Config 
-config/
+config/default.json
 
 # TypeScript v1 declaration files
 typings/
