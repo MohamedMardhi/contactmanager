@@ -6,7 +6,7 @@
   "scripts": {
     "back": "clear; nodemon index.js",
     "front": "npm start --prefix front",
-    "coding": "concurrently \"npm run back\" \"npm run front\""
+    "devserver": "concurrently \"npm run back\" \"npm run front\""
   },
   "keywords": [],
   "author": "Mohamed MARDHI",
