@@ -1,5 +1,5 @@
 import React, {useReducer} from 'react';
-import uuid from 'uuid';
+import {v4 as uuid} from "uuid"; 
 import ContactContext from './contactContext';
 import contactReducer from './contactReducer';
 import {
@@ -12,7 +12,7 @@ import {
     SET_ALERT,
     CLEAR_FILTER,
     REMOVE_ALERT,
-} from '../types'
+} from '../types';
 
 // CREATE INITIAL STATE
 const ContactState = props => {
@@ -20,45 +20,57 @@ const ContactState = props => {
         contacts: [
             {
                 "type": "personnal",
-                "_id": "607b7b9126f4a646822ec30e",
+                "id": "607b7b9126f4a646822ec30e",
                 "name": "Rachid",
                 "email": "rachid@gmail.com",
                 "phone": "06-45-65-78-98",
             },
             {
                 "type": "personnal",
-                "_id": "607b7a6ba9735844683a5bc6",
+                "id": "607b7a6ba9735844683a5bc6",
                 "name": "Rachid",
                 "email": "rachid@gmail.com",
                 "phone": "06-45-65-78-98",
             },
             {
                 "type": "personnal",
-                "_id": "607b79e3a9735844683a5bc5",
+                "id": "607b79e3a9735844683a5bc5",
                 "name": "I",
                 "email": "ismaildahmani01@gmail.com",
                 "phone": "06-45-65-78-98",
             },
             {
                 "type": "personnal",
-                "_id": "607b12417c0498045be641bf",
+                "id": "607b12417c0498045be641bf",
                 "name": "Ismail DAHMANI",
                 "email": "ismaildahmani01@gmail.com",
                 "phone": "06-45-65-78-98",
             }
         ]
     }
-    const [state, disoatch] = useReducer(contactReducer, initialState);
+    const [state, dispatch] = useReducer(contactReducer, initialState);
 
+    // ADDING NEW CONTACT
+    const addContact = contact => {
+        contact.id = uuid.v4;
+        dispatch({type : ADD_CONTACT, payload: contact})
+    }
+    // DELETE CONTACT
+    const deleteContact = id => {
+        dispatch({type : DELETE_CONTACT, payload: id})
+    }
     return (
         <ContactContext.Provider
         value= {{
-            contacts: state.contacts
+            contacts: state.contacts,
+            addContact,
+            deleteContact
         }}
         >
             {props.children}
         </ContactContext.Provider>
     )
 }
+
 
 export default ContactState;
