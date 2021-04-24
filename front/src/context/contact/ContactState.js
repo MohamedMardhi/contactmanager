@@ -21,12 +21,12 @@ const ContactState = props => {
             {
                 "type": "personnal",
                 "id": "607b7b9126f4a646822ec30e",
-                "name": "Rachid",
-                "email": "rachid@gmail.com",
+                "name": "Ridouan",
+                "email": "rid@gmail.com",
                 "phone": "06-45-65-78-98",
             },
             {
-                "type": "personnal",
+                "type": "professional",
                 "id": "607b7a6ba9735844683a5bc6",
                 "name": "Rachid",
                 "email": "rachid@gmail.com",
@@ -35,15 +35,8 @@ const ContactState = props => {
             {
                 "type": "personnal",
                 "id": "607b79e3a9735844683a5bc5",
-                "name": "I",
-                "email": "ismaildahmani01@gmail.com",
-                "phone": "06-45-65-78-98",
-            },
-            {
-                "type": "personnal",
-                "id": "607b12417c0498045be641bf",
-                "name": "Ismail DAHMANI",
-                "email": "ismaildahmani01@gmail.com",
+                "name": "Ismail",
+                "email": "ismail@gmail.com",
                 "phone": "06-45-65-78-98",
             }
         ],
@@ -60,10 +53,15 @@ const ContactState = props => {
     const deleteContact = id => {
         dispatch({type : DELETE_CONTACT, payload: id})
     }
+    // UPDATE CONTACT
+    const updateContact = contact => {
+        dispatch({type : UPDATE_CONTACT, payload: contact})
+    }
     // SET CURRENT CONTACT
     const setCurrent = contact => {
         dispatch({type : SET_CURRENT, payload: contact})
     }
+    // CLEAR CURRENT CONTACT
     const clearCurrent = () => {
         dispatch({type : CLEAR_CURRENT})
     }
@@ -74,6 +72,7 @@ const ContactState = props => {
             current: state.current,
             addContact,
             deleteContact,
+            updateContact,
             setCurrent,
             clearCurrent
         }}
