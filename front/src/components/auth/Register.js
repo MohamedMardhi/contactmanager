@@ -1,10 +1,19 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
+import AuthContext from '../../context/auth/authContext';
 import AlertContext from '../../context/alert/alertContext';
 
  const Register = () => {
      const alertContext = useContext(AlertContext)
+     const authContext = useContext(AuthContext)
+     const { setAlert } = alertContext;
+     const { register, error, clearErrors } = authContext;
 
-     const { setAlert} = alertContext;
+     useEffect(()=>{
+         if(error === 'we have a user registred with this e-mail, you forgot your password !'){
+             setAlert(error, 'danger')
+             clearErrors();
+         }
+     }, [error])
 
      const [user, setUser] = useState({
         name: '',
@@ -24,7 +33,11 @@ import AlertContext from '../../context/alert/alertContext';
          } else if(password !== passwordConfirmation) {
             setAlert('passwords doesnt match', 'danger')
          }else{
-             console.log("yoopi");
+             register({
+                 name,
+                 email,
+                 password
+             })
          }
      }
 
