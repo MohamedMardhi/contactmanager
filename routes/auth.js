@@ -13,7 +13,7 @@ const config = require('config');
 router.get('/', auth, async (req, res) => {
     try {
         // select('-password') we don't want password to be returned
-        const user = await User.findOne(req.user.id).select('-password');
+        const user = await User.findById(req.user.id).select('-password');
         res.json(user)
     } catch (error) {
         console.error(error.message);
