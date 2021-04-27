@@ -6,7 +6,8 @@
   "scripts": {
     "back": "clear; nodemon index.js",
     "front": "npm start --prefix front",
-    "devserver": "concurrently \"npm run back\" \"npm run front\""
+    "devserver": "concurrently \"npm run back\" \"npm run front\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix front && npm run build --prefix front"
   },
   "keywords": [],
   "author": "Mohamed MARDHI",
